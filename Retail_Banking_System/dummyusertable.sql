@@ -78,8 +78,7 @@ select * from transaction_TeamC
 select * from transaction_TeamC where accountno='100014_53' order by transactionid
 
 alter transaction_TeamC modify(accountno varchar2(11))
-select * from Customer_TeamC where  customerSSn='R5555'
-select * from ACCOUNT_TEAMC where accountno='100014_53'
+
 select * from transaction_TeamC
 
 select sysdate from dual
