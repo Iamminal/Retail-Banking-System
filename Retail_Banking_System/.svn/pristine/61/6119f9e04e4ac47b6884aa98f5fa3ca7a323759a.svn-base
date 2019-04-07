@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+    <%@ page import="com.tcs.ilp.RetailBanking.bean.*" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="CSS/Epoc.css">
+</head>
+<body>
+<%
+Customer cust=(Customer)request.getAttribute("customer");
+%>
+<div class="site">
+<div class="header"><%@ include file="Header.jsp" %></div>
+<div class="main">
+<center>
+<h1>Bank Statement</h1>
+</center>
+
+<table align="center">
+<tr>
+<td>Name:</td><td> </td><td><%=cust.getFirstName()+" "+cust.getLastName()%></td>
+</tr>
+<tr>
+<td>Customer Id:</td><td> </td><td><%=cust.getCustomerId()%></td>
+</tr>
+<tr>
+<td>Account Number:</td><td> </td><td><%=cust.getAccount().getAccountId()%></td>
+</tr>
+</table>
+<table align="center" border="1">
+<tr>
+<th>Transaction Id</th>
+<th>Transaction Type</th>
+<th>Transaction Amount(in Rs)</th>
+<th>Transaction Date</th>
+<th>Ledger Balance(in Rs)</th>
+</tr>
+<%for(Transaction trsn:cust.getAccount().getTransacionList()) 
+{%>
+<tr>
+<th><%=trsn.getTransactionid()%></th>
+<th><%=trsn.getTransactionType()%></th>
+<th><%=trsn.getAmount()%></th>
+<th><%=trsn.getDate()%></th>
+<th><%=trsn.getLedgerBalance()%></th>
+
+</tr>
+<%} %>
+</table>
+<center><a href="<%=request.getContextPath()%>/BankingControlServlet?action=GoBack"><Button name="action" class="button" value="GoBack">GoBack</Button></a></center>
+</div> 
+		<div class="footer"><%@ include file="/JSP/footer.jsp"%></div>
+
+</div>
+</body>
+</html>
