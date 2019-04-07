@@ -655,7 +655,8 @@ else if(action.equalsIgnoreCase("transfer")){
 				rd.forward(request, response);
 				
 			}
-				
+			//To change password
+		
 			else if(action.equalsIgnoreCase("changepassword"))
 			{
 				
@@ -677,7 +678,7 @@ else if(action.equalsIgnoreCase("transfer")){
 					rd.forward(request, response);
 				}
 			}
-		
+		//when Forgot Password
 			else if(action.equalsIgnoreCase("forgetpasswordsearch")){
 				String email=request.getParameter("email");
 				
@@ -747,6 +748,7 @@ else if(action.equalsIgnoreCase("transfer")){
 
 				}
 			}
+		//For generation of Statement
 			else if(action.equalsIgnoreCase("statement"))
 			{
 				String acctid=request.getParameter("id");
