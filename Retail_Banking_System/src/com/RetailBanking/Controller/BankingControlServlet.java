@@ -31,7 +31,7 @@ import com.RetailBanking.bean.CustomerStatus;
  */
 public class BankingControlServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public int i=0;
+	
 	/*final static Logger logger=Logger.getLogger(BankingControlServlet.class);*/
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -52,7 +52,7 @@ public class BankingControlServlet extends HttpServlet {
 		String action=request.getParameter("action");
 		BankingServices service = new BankingServices();
 
-		EmployeeServices es=new EmployeeServices();
+		EmployeeServices empservices=new EmployeeServices();
 		
 
 		Customer custcreation=new Customer();
@@ -65,7 +65,7 @@ public class BankingControlServlet extends HttpServlet {
 			String id=request.getParameter("id");
 			String password=request.getParameter("pass");
 			String type=request.getParameter("type");
-			boolean flag=false;
+			
 			String name=service.searchEmployee(id, password,type);
 			if(name!=null)
 			{
@@ -664,7 +664,7 @@ else if(action.equalsIgnoreCase("transfer")){
 				String oldpass=request.getParameter("oldpass").toString();
 				String newpass=request.getParameter("newpass").toString();
 				String confirmnewpass=request.getParameter("confirmnewpass").toString();
-				Boolean flag=es.changePassword(email,oldpass,newpass,confirmnewpass);
+				Boolean flag=empservices.changePassword(email,oldpass,newpass,confirmnewpass);
 				if(flag)
 				{
 				RequestDispatcher rd = request.getRequestDispatcher("JSP/SuccessInitiation2.jsp");
@@ -682,10 +682,10 @@ else if(action.equalsIgnoreCase("transfer")){
 			else if(action.equalsIgnoreCase("forgetpasswordsearch")){
 				String email=request.getParameter("email");
 				
-				boolean flag=es.checkEmail(email);
+				boolean flag=empservices.checkEmail(email);
 				
 				if(flag){
-					String securityQuestion=es.fetchSecurityQuestion(email);
+					String securityQuestion=empservices.fetchSecurityQuestion(email);
 					RequestDispatcher rd=request.getRequestDispatcher("JSP/ForgotPassword.jsp");
 					request.setAttribute("securityQ", securityQuestion);
 					request.setAttribute("email", email);
@@ -701,7 +701,7 @@ else if(action.equalsIgnoreCase("transfer")){
 				String email=request.getParameter("email");
 				String answer=request.getParameter("answer");
 				String securityQuestion=request.getParameter("securityQ");
-				boolean flag=es.validateAnswer(email, answer);
+				boolean flag=empservices.validateAnswer(email, answer);
 				
 				if(flag){
 					RequestDispatcher rd=request.getRequestDispatcher("JSP/ForgetPasswordChange.jsp");
@@ -720,7 +720,7 @@ else if(action.equalsIgnoreCase("transfer")){
 				String email=request.getParameter("email");
 				String newPassword=request.getParameter("newpassword");
 				String confirmpassword=request.getParameter("confirmnewpassword");
-				boolean flag=es.changeForgetPassword(email, newPassword,confirmpassword);
+				boolean flag=empservices.changeForgetPassword(email, newPassword,confirmpassword);
 				if(flag)
 				{
 					RequestDispatcher rd=request.getRequestDispatcher("JSP/SuccessInitiation2.jsp");

@@ -53,7 +53,7 @@ balance number(10) not null,
 customerID varchar2(50),
 customerSSn varchar2(50),
 foreign key (customerID,customerSSn) references Customer_TeamC(customerID,customerSSn))
-<<<<<<< .mine
+
 alter table Account_TeamC modify (accountno varchar2(12))
 select * from Account_TeamC where accountno='100018_52' OR customerID='100018_52' and accounttype='savings'
 

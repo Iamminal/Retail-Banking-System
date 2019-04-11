@@ -12,7 +12,7 @@ public class EmployeeDao {
 	PreparedStatement ps = null;
 
 	public Boolean getValidation(String email, String oldpass) {
-		System.out.println("In DAO VAL" + email + oldpass);
+	
 		String query = "select * from user1 where email=? and password=?";
 		try {
 			ps = con.prepareStatement(query);
